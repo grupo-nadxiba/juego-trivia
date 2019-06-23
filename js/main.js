@@ -42,7 +42,7 @@ var pregunta2 = new construyePregunta('¿En qué mes estamos?', ['enero', 'febre
 var pregunta3 = new construyePregunta('¿De qué color es el caballo blanco de Napoleón?', ['azul', 'blanco', 'amarillo', 'rojo'], 1);
 var pregunta4 = new construyePregunta('¿Cuánto es la raiz de 100?', [Math.PI, 10, -42, 'a'], 1);
 var pregunta5 = new construyePregunta('¿Cuántos gatos tiene Citla?', [Math.random(), 2, 3100, 8], 1);
-var pregunta6 = new construyePregunta('¿Qué es Nadxiba?', ['Empresa', 'Bar', 'Salón de juegos', 'Café']);
+var pregunta6 = new construyePregunta('¿Qué es Nadxiba?', ['Empresa', 'Bar', 'Salón de juegos', 'Café'], 0);
 var pregunta7 = new construyePregunta('Un gran poder,...', ['...se lo lleva la corriente','...Dios lo ayuda','...conlleva una gran responsabilidad','...whaaaaaaat?'], 2);
 var pregunta8 = new construyePregunta('Mítico personaje amigo de todos los niños, que se dice conoció a los dinosaurios.',['Chabelo','El Chavo del 8','Elba Esther Gordillo','Cepillín'], 0]);
 
