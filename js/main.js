@@ -20,10 +20,13 @@ en el localStorage. Por último, la función "initPregunta" se ejecuta al inicio
 
 
 //// Constructores
+preguntas = []
+
 var construyePregunta = function(pregunta, respuestas, indiceCorrecto){
     this.enunciado = pregunta;
     this.respuestas = respuestas;
-    this.correcta = indiceCorrecto;
+    this.correcta = indiceCorrecto; 
+    preguntas.push(this);
 };
 
 var construyeScore = function(correctas, totales, nombre){
@@ -39,9 +42,9 @@ var pregunta2 = new construyePregunta('¿En qué mes estamos?', ['enero', 'febre
 var pregunta3 = new construyePregunta('¿De qué color es el caballo blanco de Napoleón?', ['azul', 'blanco', 'amarillo', 'rojo'], 1);
 var pregunta4 = new construyePregunta('¿Cuánto es la raiz de 100?', [Math.PI, 10, -42, 'a'], 1);
 var pregunta5 = new construyePregunta('¿Cuántos gatos tiene Citla?', [Math.random(), 2, 3100, 8], 1);
-var pregunta6 = new construyePretunta('¿Qué es Nadxiba ?', ['Empresa', 'Bar', 'Salón de juegos', 'Café'])
-
-var preguntas = [pregunta1, pregunta2, pregunta3, pregunta4, pregunta5, pregunta6];
+var pregunta6 = new construyePregunta('¿Qué es Nadxiba?', ['Empresa', 'Bar', 'Salón de juegos', 'Café']);
+var pregunta7 = new construyePregunta('Un gran poder,...', ['...se lo lleva la corriente','...Dios lo ayuda','...conlleva una gran responsabilidad','...whaaaaaaat?'], 2);
+var pregunta8 = new construyePregunta('Mítico personaje amigo de todos los niños, que se dice conoció a los dinosaurios.',['Chabelo','El Chavo del 8','Elba Esther Gordillo','Cepillín'], 0]
 
 
 //// Métodos del prototype de construyePregunta
@@ -92,7 +95,7 @@ var sigPregunta = function(){
     var respCorrecta = document.getElementById("respuesta").value;
     if(0<=respCorrecta && respCorrecta<4 && respCorrecta!=""){
         var n = parseInt(respCorrecta);
-        var result = preguntas[selector].evalua(n)
+        var result = preguntas[selector].evalua(n);
         correctas = correctas + result[1];
         totales++;
         console.log(result[0] + '! Llevas ' + correctas + ' correctas.'); // Esto debe hacerlo en alertas o en un apartado de la página web
@@ -110,7 +113,7 @@ var sigPregunta = function(){
 var final = function(correctas, totales){
     // Pide el nombre al jugador y guarda su score 
     alert('Gracias por haber jugado. \n' + 'Puntaje: ' + correctas + ' aciertos de ' + totales + ' preguntas.');
-    nombre = prompt('Introduce tu nombre.');
+    nombre = prompt('Introduce tu nombre.'); // Falta validar el nombre
     window[nombre] = new construyeScore(correctas, totales, nombre);
     localStorage.setItem(nombre, JSON.stringify(window[nombre]));
     // Falta que se despliegue la tabla de scores guardados
