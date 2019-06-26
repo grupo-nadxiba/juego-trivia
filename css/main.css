@@ -15,15 +15,16 @@ button {
     width: 200px;
     left: 50%;
     transform: translateX(-50%);
-    color: #9d1439;
-    background: none;
-    border: none;
+    color: #DCDFEC;
+    background: #485186;
+    border: 2px solid #485186;
     font-family: Lato;
     font-size: 20px;
     text-transform: uppercase;
     cursor: pointer;
     font-weight: 300;
     transition: background-color 0.0s, color white;
+    padding: 10px;
 }
 
 button:hover { font-weight: 600; }
@@ -42,9 +43,9 @@ i {
     vertical-align: text-top;
     margin-top: -4px;
     transition: margin 0.3s;
+
 }
 
 .btn-nuevo { top: 200px;}
 .btn-respuesta { top: 300px;}
 .btn-llenado { top: 400px;}
-  

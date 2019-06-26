@@ -1,20 +1,20 @@
 /*-----------------------------------------------------------------------------------------------------------------
                                             PRIMER PROYECTO NADXIBA
-Juego de trivia, tiene tres secciones: 
+Juego de trivia, tiene tres secciones:
 
-1ra.- Bienvenida y muestra botón para iniciar el juego. 
-2da.- Donde se desarrolla el juego; se despliega pregunta, opciones, formulario de la respuesta y botón. 
-3ra.- Pide el nombre del jugador, muestra el score final de la sesión y la lista de scores. 
+1ra.- Bienvenida y muestra botón para iniciar el juego.
+2da.- Donde se desarrolla el juego; se despliega pregunta, opciones, formulario de la respuesta y botón.
+3ra.- Pide el nombre del jugador, muestra el score final de la sesión y la lista de scores.
 
 Se utiliza el constructor "construyePregunta" para generar las preguntas-objeto, cada una consta de: pregunta, lista
-de respuestas e índice de respuesta correcta; además se utilizan métodos de este mismo constructor para desplegar 
-(".prototype.imprime") y evaluar (".prototype.evalua") las preguntas en la sección correspondiente. 
+de respuestas e índice de respuesta correcta; además se utilizan métodos de este mismo constructor para desplegar
+(".prototype.imprime") y evaluar (".prototype.evalua") las preguntas en la sección correspondiente.
 
 Se utiliza el constructor "construyeScore" para generar los score-objetos que contendrán: nombre del jugador, aciertos
-y total  de preguntas mostradas. 
+y total  de preguntas mostradas.
 
-La función "final" se encarga de desplegar la información del score-objeto en la sección tres y también de  guardarlo 
-en el localStorage. Por último, la función "initPregunta" se ejecuta al inicio del juego y en adelante da la función 
+La función "final" se encarga de desplegar la información del score-objeto en la sección tres y también de  guardarlo
+en el localStorage. Por último, la función "initPregunta" se ejecuta al inicio del juego y en adelante da la función
 "sigPregunta" se encarga de evaluar y mostrar la siguiente pregunta (en ese orden).
 -------------------------------------------------------------------------------------------------------------------*/
 
@@ -25,7 +25,7 @@ preguntas = []
 var construyePregunta = function(pregunta, respuestas, indiceCorrecto){
     this.enunciado = pregunta;
     this.respuestas = respuestas;
-    this.correcta = indiceCorrecto; 
+    this.correcta = indiceCorrecto;
     preguntas.push(this);
 };
 
@@ -45,6 +45,13 @@ var pregunta5 = new construyePregunta('¿Cuántos gatos tiene Citla?', [Math.ran
 var pregunta6 = new construyePregunta('¿Qué es Nadxiba?', ['Empresa', 'Bar', 'Salón de juegos', 'Café'], 0);
 var pregunta7 = new construyePregunta('Un gran poder,...', ['...se lo lleva la corriente','...Dios lo ayuda','...conlleva una gran responsabilidad','...whaaaaaaat?'], 2);
 var pregunta8 = new construyePregunta('Mítico personaje amigo de todos los niños, que se dice conoció a los dinosaurios.',['Chabelo','El Chavo del 8','Elba Esther Gordillo','Cepillín'], 0);
+var pregunta9 = new construyePregunta('¿En qué año se fundo Nadxiba? ', [2020, 2019, 2018, 2017], 1);
+var pregunta10 = new construyePregunta('¿Cuántos fundadrores tiene Nadxiba?', [1, 3, 8, 5], 3);
+var pregunta11 = new construyePregunta('¿A Mario le gustan los perros?', ['si', 'no', 'si y no', '13'], 0);
+var pregunta12 = new construyePregunta('¿De qué carrera son la mayorìa de los fundadores?', ['Fìsica', 'Quìmica', 'Matemàticas', 'No tienen carrera'], 0);
+var pregunta13 = new construyePregunta('¿Cuántos planetas hay en el sistema Solar?', [9, 8, 7, 10], 1);
+var pregunta14 = new construyePregunta('¿Quién propuso el nombre de la empresa?', ['Mario', 'Manu','Arturo', ' Bryan'], 3);
+var pregunta15 = new construyePregunta('¿La empresa tiene futuro?', ['No', 'Sì', 'No sè', 'Tal vez'], 2);
 
 
 //// Métodos del prototype de construyePregunta
@@ -63,7 +70,7 @@ construyePregunta.prototype.imprime = function(){
         document.getElementById("listOpcs").appendChild(node);
     };
 };
-       
+
 construyePregunta.prototype.evalua = function(respCorrecta){
     // Evalúa la respuesta introducida por el jugador
     n = this.correcta;
@@ -111,17 +118,21 @@ var sigPregunta = function(){
 }
 
 var final = function(correctas, totales){
-    // Pide el nombre al jugador y guarda su score 
+    // Pide el nombre al jugador y guarda su score
     alert('Gracias por haber jugado. \n' + 'Puntaje: ' + correctas + ' aciertos de ' + totales + ' preguntas.');
     nombre = prompt('Introduce tu nombre.'); // Falta validar el nombre
     window[nombre] = new construyeScore(correctas, totales, nombre);
     localStorage.setItem(nombre, JSON.stringify(window[nombre]));
     // Falta que se despliegue la tabla de scores guardados
-    // Falta que muestre de nuevo el botón 'init' (o en su defecto crear uno nuevo) 
-        // y oculte el botón 'sig', para poder iniciar nuevamente el juego
+//Falta arreglar el error que tiene, no logrè encontrarlo, sin embargo agregue el botòn que faltaba para reiniciar el juego,
+//El problema es que no evalùa las preguntas y te regresa al inicio, me tomo un buen rato intentar ver el problema pero fallè y solamente agregue preguntas y el nuevo botòn
+
+
+
 };
 
 
 //// Ligas con eventos en objetos del DOM
 document.getElementById('init').onclick = initPregunta;
 document.getElementById('sig').onclick = sigPregunta;
+document.getElementById('reinit').onclick = initPregunta;
