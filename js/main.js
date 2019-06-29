@@ -106,6 +106,7 @@ var initPregunta = function(){
     document.getElementById('init').style.display = 'none';
     document.getElementById('sig').style.display = 'block';
     document.getElementById('entrada').style.display = 'block';
+    document.getElementById("listOpcs").style.display = 'block';
 };
 //reinitPregunta
 
