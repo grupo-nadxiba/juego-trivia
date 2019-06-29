@@ -89,13 +89,7 @@ construyePregunta.prototype.evalua = function(respCorrecta){
         return ['Acertaste! :D', 1];
 
     }else{
-<<<<<<< HEAD
-
-        return ['Fallaste! :C', 0];
-
-=======
         return ['Fallaste :C', 0] ;
->>>>>>> Bug al dar ENTER corregido
     }
 };
 
@@ -120,11 +114,8 @@ var initPregunta = function(){
 // Valida y evalúa la respuesta introducida por el jugador y despliega una siguiente pregunta
 // ESTRICTAMENTE en ese orden
 var sigPregunta = function(){
-<<<<<<< HEAD
-=======
     // Valida y evalúa la respuesta introducida por el jugador y despliega una siguiente pregunta
     // ESTRICTAMENTE en ese orden
->>>>>>> Bug al dar ENTER corregido
     var respCorrecta = document.getElementById("respuesta").value;
 
     if(0 <= respCorrecta && respCorrecta < 4 && respCorrecta != ""){
@@ -133,21 +124,10 @@ var sigPregunta = function(){
 
         correctas = correctas + result[1];
         totales++;
-<<<<<<< HEAD
-
-        alert(result[0] + '! Llevas ' + correctas + ' correctas!'); 
-
-        document.getElementById('respuesta').value = '';
-        document.getElementById('respuesta').placeholder = 'Introduce tu respuesta';
-
-        selector = Math.floor(preguntas.length * Math.random());
-
-=======
         document.getElementById('respuesta').value = '';
         document.getElementById('respuesta').placeholder = 'Introduce tu respuesta';
         alert(result[0] + '! Llevas ' + correctas + ' correctas!'); 
         selector = Math.floor(preguntas.length*Math.random());
->>>>>>> Bug al dar ENTER corregido
     }else if(respCorrecta === "salir"){
         
         final(correctas, totales);
@@ -172,13 +152,6 @@ var final = function(correctas, totales){
     nombre = prompt('Introduce tu nombre.'); // Falta validar el nombre
     window[nombre] = new construyeScore(correctas, totales, nombre);
     localStorage.setItem(nombre, JSON.stringify(window[nombre]));
-<<<<<<< HEAD
-
-    // Falta que se despliegue la tabla de scores guardados
-    // Falta arreglar el error que tiene, no logré encontrarlo, sin embargo agregue el botón que faltaba para reiniciar el juego,
-    // El problema es que no evalúa las preguntas y te regresa al inicio, me tomo un buen rato intentar ver el problema pero fallé y solamente agregue preguntas y el nuevo botón
-};
-=======
     // Falta que se despliegue la tabla de scores guardados
 };
 
@@ -189,7 +162,6 @@ var submitForm = function(){
 
 //// Ligas con eventos en objetos del DOM
 
->>>>>>> Bug al dar ENTER corregido
 
 var submitForm = function(){
     // Evalúa la respuesta sin recargar la página
@@ -200,20 +172,4 @@ var submitForm = function(){
 document.getElementById('formRespuesta').onsubmit = submitForm;
 document.getElementById('init').onclick = initPregunta;
 document.getElementById('sig').onclick = sigPregunta;
-<<<<<<< HEAD
-document.getElementById('reinit').onclick = initPregunta;
-document.getElementById("respuesta").onsubmit = sigPregunta;
-
-// [Manuel] El siguiente código debería ser suficiente para que ENTER accionara el boton de 'siguiente' al accionarse desde el formulario,
-// pero como el 'else if' de 'sigPregunta', ENTER desde ahí regresa a la pantalla de inicio.
-
-
-/*input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   document.getElementById('sig').click();
-  }
-});*/
-=======
->>>>>>> Bug al dar ENTER corregido
 
