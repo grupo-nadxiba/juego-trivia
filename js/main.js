@@ -165,15 +165,16 @@ var final = function(correctas, totales){
 document.getElementById('init').onclick = initPregunta;
 document.getElementById('sig').onclick = sigPregunta;
 document.getElementById('reinit').onclick = initPregunta;
+document.getElementById("respuesta").onsubmit = sigPregunta;
 
 // [Manuel] El siguiente código debería ser suficiente para que ENTER accionara el boton de 'siguiente' al accionarse desde el formulario,
 // pero como el 'else if' de 'sigPregunta', ENTER desde ahí regresa a la pantalla de inicio.
 
-var input = document.getElementById("respuesta");
-input.addEventListener("keyup", function(event) {
+
+/*input.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
    event.preventDefault();
    document.getElementById('sig').click();
   }
-});
+});*/
 
