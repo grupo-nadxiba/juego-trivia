@@ -2,9 +2,9 @@
                                             PRIMER PROYECTO NADXIBA
 Juego de trivia, tiene tres secciones:
 
-1ra.- Bienvenida y muestra botón para iniciar el juego.
-2da.- Donde se desarrolla el juego; se despliega pregunta, opciones, formulario de la respuesta y botón.
-3ra.- Pide el nombre del jugador, muestra el score final de la sesión y la lista de scores.
+1ra.- Inicio: Bienvenida y muestra botón para iniciar el juego.
+2da.- Desarrollo: Donde se desarrolla el juego. Se despliegan: pregunta, opciones, formulario de la respuesta y botón.
+3ra.- Final: Pide el nombre del jugador, muestra el score final de la sesión y la lista de scores.
 
 Se utiliza el constructor "construyePregunta" para generar las preguntas-objeto, cada una consta de: pregunta, lista
 de respuestas e índice de respuesta correcta; además se utilizan métodos de este mismo constructor para desplegar
@@ -35,7 +35,6 @@ var construyeScore = function(correctas, totales, nombre){
     this.nombre = nombre;
 };
 
-
 //// Lista de preguntas
 var pregunta1 = new construyePregunta('¿Cuánto es 3 + 5?', [1, 3, 8, 10], 2);
 var pregunta2 = new construyePregunta('¿En qué mes estamos?', ['enero', 'febrero', 'agosto','junio'], 3);
@@ -52,7 +51,7 @@ var pregunta12 = new construyePregunta('¿De qué carrera son la mayorìa de los
 var pregunta13 = new construyePregunta('¿Cuántos planetas hay en el sistema Solar?', [9, 8, 7, 10], 1);
 var pregunta14 = new construyePregunta('¿Quién propuso el nombre de la empresa?', ['Mario', 'Manu','Arturo', ' Bryan'], 3);
 var pregunta15 = new construyePregunta('¿La empresa tiene futuro?', ['No', 'Sì', 'No sè', 'Tal vez'], 2);
-
+var pregunta16 = new construyePregunta('La energia de un gas ideal depende de:',['Solo presion','Solo temperatura','Presion y temperatura', 'Solo volumen','Presion y volumen'],1);
 
 //// Métodos del prototype de construyePregunta
 construyePregunta.prototype.imprime = function(){
@@ -77,7 +76,7 @@ construyePregunta.prototype.evalua = function(respCorrecta){
     if(respCorrecta === n){
         return ['Acertaste :D', 1];
     }else{
-        return ['Fallaste :C', 0] ;
+        return ['Fallaste C', 0] ;
     }
 };
 
@@ -105,7 +104,7 @@ var sigPregunta = function(){
         var result = preguntas[selector].evalua(n);
         correctas = correctas + result[1];
         totales++;
-        console.log(result[0] + '! Llevas ' + correctas + ' correctas.'); // Esto debe hacerlo en alertas o en un apartado de la página web
+        alert(result[0] + '! Llevas ' + correctas + ' correctas!'); 
         document.getElementById('respuesta').value = '';
         document.getElementById('respuesta').placeholder = 'Introduce tu respuesta';
         selector = Math.floor(preguntas.length*Math.random());
@@ -119,7 +118,7 @@ var sigPregunta = function(){
 
 var final = function(correctas, totales){
     // Pide el nombre al jugador y guarda su score
-    alert('Gracias por haber jugado. \n' + 'Puntaje: ' + correctas + ' aciertos de ' + totales + ' preguntas.');
+    alert('Gracias por jugar. \n' + 'Su puntaje: ' + correctas + ' Aciertos de ' + totales + ' preguntas.');
     nombre = prompt('Introduce tu nombre.'); // Falta validar el nombre
     window[nombre] = new construyeScore(correctas, totales, nombre);
     localStorage.setItem(nombre, JSON.stringify(window[nombre]));
