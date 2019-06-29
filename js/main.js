@@ -59,16 +59,14 @@ var pregunta19 = new construyePregunta('Sobrenombre de la protagonista de la nov
 var pregunta20 = new construyePregunta('Si un arbol cae en el bosque y no hay nadie para oirlo, ¿suena realmente?', ['No','Puede...','No sé','Obviii'], 3);
 var pregunta21 = new construyePregunta('La energia de un gas ideal depende de:',['Solo presion','Solo temperatura','Presion y temperatura', 'Solo volumen','Presion y volumen'],1);
 
-var arraySort = []
-for(i=0; i<preguntas.length; i++ ){
-    arraySort.push(i)
-}
-
 function eligeSelector(preguntas){
     selector = Math.floor(preguntas.length * Math.random())
-    arraySort.splice(selector,1);
     return selector
-}
+};
+
+var  deleteOpcion = function(selector){
+    preguntas.splice(selector,1);
+};
 
 
 //// Métodos del prototype de construyePregunta
@@ -115,6 +113,7 @@ var initPregunta = function(){
     selector =  eligeSelector(preguntas);
     preguntas[selector].imprime();
 
+
     document.getElementById('init').style.display = 'none';
     document.getElementById('sig').style.display = 'block';
     document.getElementById('entrada').style.display = 'block';
@@ -137,6 +136,8 @@ var sigPregunta = function(){
         document.getElementById('respuesta').value = '';
         document.getElementById('respuesta').placeholder = 'Introduce tu respuesta';
         alert(result[0] + '! Llevas ' + correctas + ' correctas!'); 
+      
+        deleteOpcion(selector);
         selector =  eligeSelector(preguntas);
     }else if(respCorrecta === "salir"){
         
