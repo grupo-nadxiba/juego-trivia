@@ -131,15 +131,7 @@ var sigPregunta = function(){
         selector = Math.floor(preguntas.length * Math.random());
 
     }else if(respCorrecta === "salir"){
-        /* [Manuel]
-        !!!!!!!!!!!!!!!!
-        Hay un problema en alguna parte: 'salir' no invoca la función 'final(,)' como debería.
-        Es más, no se ejecuta ninguna de las instrucciones de este bloque.
-
-        Sospecho que hay un error en el formulario o que la pantalla de inicio tene algún atributo que no debiera.
-        */
-
-        alert('Esta alerta debería aparecer y no lo hace.');
+        
         final(correctas, totales);
 
         document.getElementById('sig').style.display = 'none';
@@ -176,7 +168,7 @@ document.getElementById('reinit').onclick = initPregunta;
 
 // [Manuel] El siguiente código debería ser suficiente para que ENTER accionara el boton de 'siguiente' al accionarse desde el formulario,
 // pero como el 'else if' de 'sigPregunta', ENTER desde ahí regresa a la pantalla de inicio.
-/*
+
 var input = document.getElementById("respuesta");
 input.addEventListener("keyup", function(event) {
   if (event.keyCode === 13) {
@@ -184,4 +176,4 @@ input.addEventListener("keyup", function(event) {
    document.getElementById('sig').click();
   }
 });
-*/
+
