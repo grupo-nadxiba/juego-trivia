@@ -59,6 +59,16 @@ var pregunta19 = new construyePregunta('Sobrenombre de la protagonista de la nov
 var pregunta20 = new construyePregunta('Si un arbol cae en el bosque y no hay nadie para oirlo, ¿suena realmente?', ['No','Puede...','No sé','Obviii'], 3);
 var pregunta21 = new construyePregunta('La energia de un gas ideal depende de:',['Solo presion','Solo temperatura','Presion y temperatura', 'Solo volumen','Presion y volumen'],1);
 
+var arraySort = []
+for(i=0; i<preguntas.length; i++ ){
+    arraySort.push(i)
+}
+
+function eligeSelector(preguntas){
+    selector = Math.floor(preguntas.length * Math.random())
+    arraySort.splice(selector,1);
+    return selector
+}
 
 
 //// Métodos del prototype de construyePregunta
@@ -102,7 +112,7 @@ var selector = 0;
 
 // Da inicio al juego, despliega una primer pregunta en la página web y los elementos del DOM necesarios
 var initPregunta = function(){
-    selector = Math.floor(preguntas.length * Math.random());
+    selector =  eligeSelector(preguntas);
     preguntas[selector].imprime();
 
     document.getElementById('init').style.display = 'none';
@@ -127,7 +137,7 @@ var sigPregunta = function(){
         document.getElementById('respuesta').value = '';
         document.getElementById('respuesta').placeholder = 'Introduce tu respuesta';
         alert(result[0] + '! Llevas ' + correctas + ' correctas!'); 
-        selector = Math.floor(preguntas.length*Math.random());
+        selector =  eligeSelector(preguntas);
     }else if(respCorrecta === "salir"){
         
         final(correctas, totales);
