@@ -35,6 +35,7 @@ var construyeScore = function(correctas, totales, nombre){
     this.nombre = nombre;
 };
 
+
 //// Lista de preguntas
 var pregunta1 = new construyePregunta('¿Cuánto es 3 + 5?', [1, 3, 8, 10], 2);
 var pregunta2 = new construyePregunta('¿En qué mes estamos?', ['enero','febrero','agosto','junio'], 3);
@@ -57,6 +58,7 @@ var pregunta18 = new construyePregunta('¿Cuál es el único y verdadero Dios?',
 var pregunta19 = new construyePregunta('Sobrenombre de la protagonista de la novela Aniquilación, de Jeff VanderMeer', ['Pájaro Fantasma','Amenaza Fantasma','Bendita por la Tormenta','Mary'], 0);
 var pregunta20 = new construyePregunta('Si un arbol cae en el bosque y no hay nadie para oirlo, ¿suena realmente?', ['No','Puede...','No sé','Obviii'], 3);
 var pregunta21 = new construyePregunta('La energia de un gas ideal depende de:',['Solo presion','Solo temperatura','Presion y temperatura', 'Solo volumen','Presion y volumen'],1);
+
 
 
 //// Métodos del prototype de construyePregunta
@@ -87,9 +89,13 @@ construyePregunta.prototype.evalua = function(respCorrecta){
         return ['Acertaste! :D', 1];
 
     }else{
+<<<<<<< HEAD
 
         return ['Fallaste! :C', 0];
 
+=======
+        return ['Fallaste :C', 0] ;
+>>>>>>> Bug al dar ENTER corregido
     }
 };
 
@@ -114,6 +120,11 @@ var initPregunta = function(){
 // Valida y evalúa la respuesta introducida por el jugador y despliega una siguiente pregunta
 // ESTRICTAMENTE en ese orden
 var sigPregunta = function(){
+<<<<<<< HEAD
+=======
+    // Valida y evalúa la respuesta introducida por el jugador y despliega una siguiente pregunta
+    // ESTRICTAMENTE en ese orden
+>>>>>>> Bug al dar ENTER corregido
     var respCorrecta = document.getElementById("respuesta").value;
 
     if(0 <= respCorrecta && respCorrecta < 4 && respCorrecta != ""){
@@ -122,6 +133,7 @@ var sigPregunta = function(){
 
         correctas = correctas + result[1];
         totales++;
+<<<<<<< HEAD
 
         alert(result[0] + '! Llevas ' + correctas + ' correctas!'); 
 
@@ -130,6 +142,12 @@ var sigPregunta = function(){
 
         selector = Math.floor(preguntas.length * Math.random());
 
+=======
+        document.getElementById('respuesta').value = '';
+        document.getElementById('respuesta').placeholder = 'Introduce tu respuesta';
+        alert(result[0] + '! Llevas ' + correctas + ' correctas!'); 
+        selector = Math.floor(preguntas.length*Math.random());
+>>>>>>> Bug al dar ENTER corregido
     }else if(respCorrecta === "salir"){
         
         final(correctas, totales);
@@ -139,7 +157,7 @@ var sigPregunta = function(){
         document.getElementById("salida").style.display = 'block';
 
     }else{
-    	alert('La respuesta es inválida, escribe una opción válida o "salir" para terminar el juego y da click en SIGUIENTE.');
+    	alert('La respuesta es inválida, escribe una opción válida o "salir" para terminar el juego y presiona ENTER o da click en SIGUIENTE.');
     }
     preguntas[selector].imprime();
     //[Manuel]  No se si esto debería estar afuera del if; ¿no se ejecuta aún cuando uno pone 'salir'?
@@ -154,16 +172,35 @@ var final = function(correctas, totales){
     nombre = prompt('Introduce tu nombre.'); // Falta validar el nombre
     window[nombre] = new construyeScore(correctas, totales, nombre);
     localStorage.setItem(nombre, JSON.stringify(window[nombre]));
+<<<<<<< HEAD
 
     // Falta que se despliegue la tabla de scores guardados
     // Falta arreglar el error que tiene, no logré encontrarlo, sin embargo agregue el botón que faltaba para reiniciar el juego,
     // El problema es que no evalúa las preguntas y te regresa al inicio, me tomo un buen rato intentar ver el problema pero fallé y solamente agregue preguntas y el nuevo botón
 };
+=======
+    // Falta que se despliegue la tabla de scores guardados
+};
 
+var submitForm = function(){
+    sigPregunta();
+    return false;
+}
 
 //// Ligas con eventos en objetos del DOM
+
+>>>>>>> Bug al dar ENTER corregido
+
+var submitForm = function(){
+    // Evalúa la respuesta sin recargar la página
+    sigPregunta();
+    return false;
+}
+
+document.getElementById('formRespuesta').onsubmit = submitForm;
 document.getElementById('init').onclick = initPregunta;
 document.getElementById('sig').onclick = sigPregunta;
+<<<<<<< HEAD
 document.getElementById('reinit').onclick = initPregunta;
 document.getElementById("respuesta").onsubmit = sigPregunta;
 
@@ -177,4 +214,6 @@ document.getElementById("respuesta").onsubmit = sigPregunta;
    document.getElementById('sig').click();
   }
 });*/
+=======
+>>>>>>> Bug al dar ENTER corregido
 
