@@ -1,18 +1,14 @@
 /*-----------------------------------------------------------------------------------------------------------------
                                             PRIMER PROYECTO NADXIBA
 Juego de trivia, tiene tres secciones:
-
 1ra.- Inicio: Bienvenida y muestra botón para iniciar el juego.
 2da.- Desarrollo: Donde se desarrolla el juego. Se despliegan: pregunta, opciones, formulario de la respuesta y botón.
 3ra.- Final: Pide el nombre del jugador, muestra el score final de la sesión y la lista de scores.
-
 Se utiliza el constructor "construyePregunta" para generar las preguntas-objeto, cada una consta de: pregunta, lista
 de respuestas e índice de respuesta correcta; además se utilizan métodos de este mismo constructor para desplegar
 (".prototype.imprime") y evaluar (".prototype.evalua") las preguntas en la sección correspondiente.
-
 Se utiliza el constructor "construyeScore" para generar los score-objetos que contendrán: nombre del jugador, aciertos
 y total  de preguntas mostradas.
-
 La función "final" se encarga de desplegar la información del score-objeto en la sección tres y también de  guardarlo
 en el localStorage. Por último, la función "initPregunta" se ejecuta al inicio del juego y en adelante da la función
 "sigPregunta" se encarga de evaluar y mostrar la siguiente pregunta (en ese orden).
@@ -59,14 +55,6 @@ var pregunta19 = new construyePregunta('Sobrenombre de la protagonista de la nov
 var pregunta20 = new construyePregunta('Si un arbol cae en el bosque y no hay nadie para oirlo, ¿suena realmente?', ['No','Puede...','No sé','Obviii'], 3);
 var pregunta21 = new construyePregunta('La energia de un gas ideal depende de:',['Solo presion','Solo temperatura','Presion y temperatura', 'Solo volumen','Presion y volumen'],1);
 
-function eligeSelector(preguntas){
-    selector = Math.floor(preguntas.length * Math.random())
-    return selector
-};
-
-var  deleteOpcion = function(selector){
-    preguntas.splice(selector,1);
-};
 
 
 //// Métodos del prototype de construyePregunta
@@ -90,6 +78,8 @@ construyePregunta.prototype.imprime = function(){
 };
 
 
+
+
 // Evalúa la respuesta introducida por el jugador
 construyePregunta.prototype.evalua = function(respCorrecta){
     n = this.correcta;
@@ -97,7 +87,7 @@ construyePregunta.prototype.evalua = function(respCorrecta){
         return ['Acertaste! :D', 1];
 
     }else{
-        return ['Fallaste :C', 0] ;
+        return ['Fallaste! :C', 0] ;
     }
 };
 
@@ -110,14 +100,18 @@ var selector = 0;
 
 // Da inicio al juego, despliega una primer pregunta en la página web y los elementos del DOM necesarios
 var initPregunta = function(){
-    selector =  eligeSelector(preguntas);
+    selector = Math.floor(preguntas.length * Math.random());
     preguntas[selector].imprime();
-
 
     document.getElementById('init').style.display = 'none';
     document.getElementById('sig').style.display = 'block';
     document.getElementById('entrada').style.display = 'block';
 };
+//reinitPregunta
+
+
+
+
 
 
 // Valida y evalúa la respuesta introducida por el jugador y despliega una siguiente pregunta
@@ -135,12 +129,10 @@ var sigPregunta = function(){
         totales++;
         document.getElementById('respuesta').value = '';
         document.getElementById('respuesta').placeholder = 'Introduce tu respuesta';
-        alert(result[0] + '! Llevas ' + correctas + ' correctas!'); 
-      
-        deleteOpcion(selector);
-        selector =  eligeSelector(preguntas);
+        alert(result[0] + '! Llevas ' + correctas + ' correctas!');
+        selector = Math.floor(preguntas.length*Math.random());
     }else if(respCorrecta === "salir"){
-        
+
         final(correctas, totales);
 
         document.getElementById('sig').style.display = 'none';
@@ -157,12 +149,69 @@ var sigPregunta = function(){
 
 // Pide el nombre al jugador y guarda su score
 var final = function(correctas, totales){
-
-    // Pide el nombre al jugador y guarda su score
     alert('Gracias por jugar. \n' + 'Su puntaje: ' + correctas + ' Aciertos de ' + totales + ' preguntas.');
-    nombre = prompt('Introduce tu nombre.'); // Falta validar el nombre
+    nombre = prompt('Introduce tu nombre.');
+    while(nombre.length==0){
+        nombre=prompt('Introduce tu nombre por favor:');
+    };
     window[nombre] = new construyeScore(correctas, totales, nombre);
+
     localStorage.setItem(nombre, JSON.stringify(window[nombre]));
+        // Despliega la pregunta y las opciones en la página web
+        var titulo = document.querySelector("#enunciado");
+        titulo.innerHTML = 'Fin del Juego';
+        var titLi= document.getElementById("titList").style.display = 'none';
+
+        document.getElementById("listOpcs").style.display = 'none';
+/*
+        for(i=0; i<lista.length; i++){
+            var node = document.createElement("LI");
+            var opcion = document.createTextNode(lista[i]);
+
+            node.appendChild(opcion);
+            document.getElementById("listOpcs").appendChild(node);
+        }
+/*
+    var plantillaFinal = `
+    <head>
+         <meta charset="utf-8" />
+         <link type="text/css" rel="stylesheet"  href="css/main.css">
+         <title>Nadxiba</title>
+
+    </head>
+    <h1>Fin del juego</h1>
+
+    <script type="text/javascript" src="js/main.js"></script>
+
+
+    <table>
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Jill</td>
+    <td>Smith</td>
+    <td>50</td>
+  </tr>
+  <tr>
+    <td>Eve</td>
+    <td>Jackson</td>
+    <td>94</td>
+  </tr>
+</table>
+
+
+
+    `;
+
+    document.write(plantillaFinal);
+*/
+    document.getElementById("init").style.display = 'block';
+    document.getElementById("init").innerHTML = 'REINICIAR';
+    
+
     // Falta que se despliegue la tabla de scores guardados
 };
 
@@ -183,4 +232,4 @@ var submitForm = function(){
 document.getElementById('formRespuesta').onsubmit = submitForm;
 document.getElementById('init').onclick = initPregunta;
 document.getElementById('sig').onclick = sigPregunta;
-
+document.getElementById('reinit').onclick = initPregunta;
